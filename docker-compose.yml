@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   ollama-intel-gpu:
+    mem_limit: 24g 
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,11 +14,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ollama-intel-gpu:/root/.ollama
     environment:
-      - DISPLAY=${DISPLAY}
-    deploy:
-      resources:
-        limits:
-          memory: 24G  
+      - DISPLAY=${DISPLAY}  
   ollama-webui:
     image: ghcr.io/open-webui/open-webui
     container_name: ollama-webui
